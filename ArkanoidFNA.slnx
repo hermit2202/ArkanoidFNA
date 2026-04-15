@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="ArkanoidFNA/ArkanoidFNA.csproj" Id="1bba92dd-62b8-477e-acb9-0e64da1bb183">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+</Solution>
