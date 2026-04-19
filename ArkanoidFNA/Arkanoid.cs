@@ -8,6 +8,9 @@ using System.Collections.Generic;
 
 namespace ArkanoidFNA
 {
+    /// <summary>
+    /// Главный класс игры Arkanoid, управляющий циклом, отрисовкой и обработкой ввода.
+    /// </summary>
     public class Arkanoid : Game
     {
         private GameEngine engine;
@@ -27,6 +30,9 @@ namespace ArkanoidFNA
         Texture2D restartText;
         Dictionary<PowerUpType, Texture2D> powerUpTexture;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр игры Arkanoid.
+        /// </summary>
         public Arkanoid()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -228,14 +234,14 @@ namespace ArkanoidFNA
         {
             var whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData(new[] { Color.White });
-            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight), Color.Black * 0.7f);
+            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight),
+                Color.Black * FNAConstants.OverlayOpacity);
 
-            float scale = 0.6f;
-            float logoWidth = arkanoid.Width * scale;
-            float logoHeight = arkanoid.Height * scale;
+            var logoWidth = arkanoid.Width * FNAConstants.MenuLogoScale;
+            var logoHeight = arkanoid.Height * FNAConstants.MenuLogoScale;
 
-            float logoX = (GameConstants.GameWidth - logoWidth) / 2;
-            float logoY = 100;
+            var logoX = (GameConstants.GameWidth - logoWidth) / 2;
+            var logoY = FNAConstants.MenuLogoY;
 
             spriteBatch.Draw(
                 arkanoid,
@@ -243,8 +249,8 @@ namespace ArkanoidFNA
                 Color.White
             );
 
-            float textX = (GameConstants.GameWidth - startText.Width) / 2;
-            float textY = 400;
+            var textX = (GameConstants.GameWidth - startText.Width) / 2;
+            var textY = FNAConstants.MenuTextY;
             spriteBatch.Draw(startText, new Vector2(textX, textY), Color.White);
         }
 
@@ -252,14 +258,14 @@ namespace ArkanoidFNA
         {
             var whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData(new[] { Color.White });
-            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight), Color.Black * 0.7f);
+            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight),
+                Color.Black * FNAConstants.OverlayOpacity);
 
-            float scale = 0.5f;
-            float loseWidth = lose.Width * scale;
-            float loseHeight = lose.Height * scale;
+            var loseWidth = lose.Width * FNAConstants.EndScreenScale;
+            var loseHeight = lose.Height * FNAConstants.EndScreenScale;
 
-            float loseX = (GameConstants.GameWidth - loseWidth) / 2;
-            float loseY = 150;
+            var loseX = (GameConstants.GameWidth - loseWidth) / 2;
+            var loseY = FNAConstants.EndScreenLogoY;
 
             spriteBatch.Draw(
                 lose,
@@ -267,8 +273,8 @@ namespace ArkanoidFNA
                 Color.White
             );
 
-            float restartX = (GameConstants.GameWidth - restartText.Width) / 2;
-            float restartY = 350;
+            var restartX = (GameConstants.GameWidth - restartText.Width) / 2;
+            var restartY = FNAConstants.EndScreenTextY;
             spriteBatch.Draw(restartText, new Vector2(restartX, restartY), Color.White);
         }
 
@@ -276,14 +282,15 @@ namespace ArkanoidFNA
         {
             var whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData(new[] { Color.White });
-            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight), Color.Black * 0.7f);
+            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight),
+                Color.Black * FNAConstants.OverlayOpacity);
 
-            float scale = 0.5f;
-            float winWidth = win.Width * scale;
-            float winHeight = win.Height * scale;
+            var scale = FNAConstants.EndScreenScale;
+            var winWidth = win.Width * scale;
+            var winHeight = win.Height * scale;
 
-            float winX = (GameConstants.GameWidth - winWidth) / 2;
-            float winY = 150;
+            var winX = (GameConstants.GameWidth - winWidth) / 2;
+            var winY = FNAConstants.EndScreenLogoY;
 
             spriteBatch.Draw(
                 win,
@@ -291,8 +298,8 @@ namespace ArkanoidFNA
                 Color.White
             );
 
-            float restartX = (GameConstants.GameWidth - restartText.Width) / 2;
-            float restartY = 350;
+            var restartX = (GameConstants.GameWidth - restartText.Width) / 2;
+            var restartY = 350;
             spriteBatch.Draw(restartText, new Vector2(restartX, restartY), Color.White);
         }
     }
