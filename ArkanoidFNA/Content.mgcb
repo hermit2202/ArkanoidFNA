@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+    <Asset Type="Pipeline:BuildItemCollection">
+        <Item>
+            <Source>Content\Arial.spritefont</Source>
+            <Name>Arial</Name>
+            <Importer>FontDescriptionImporter</Importer>
+            <Processor>FontDescriptionProcessor</Processor>
+            <BuildAction>Compile</BuildAction>
+        </Item>
+    </Asset>
+</XnaContent>
