@@ -3,7 +3,6 @@
     <Platform Name="Any CPU" />
     <Platform Name="x64" />
   </Configurations>
-  <Folder Name="/Solution Items/" />
   <Project Path="Arkanoid.Logic/Arkanoid.Logic.csproj" Id="436110c9-aeef-40b5-a398-0ecfe597a90c" />
   <Project Path="ArkanoidFNA/ArkanoidFNA.csproj" Id="1bba92dd-62b8-477e-acb9-0e64da1bb183">
     <Platform Solution="*|x64" Project="x64" />

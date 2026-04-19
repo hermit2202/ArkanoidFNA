@@ -20,6 +20,11 @@ namespace ArkanoidFNA
         Texture2D ballTexture;
         Texture2D heartTexture;
         Texture2D[] blockTexture;
+        Texture2D arkanoid;
+        Texture2D lose;
+        Texture2D win;
+        Texture2D startText;
+        Texture2D restartText;
         Dictionary<PowerUpType, Texture2D> powerUpTexture;
 
         public Arkanoid()
@@ -53,6 +58,13 @@ namespace ArkanoidFNA
             powerUpTexture[PowerUpType.WidePlatform] = Content.Load<Texture2D>("PowerUp1");
             powerUpTexture[PowerUpType.FireBall] = Content.Load<Texture2D>("PowerUp2");
             powerUpTexture[PowerUpType.FastBall] = Content.Load<Texture2D>("PowerUp3");
+
+            lose = Content.Load<Texture2D>("lose");
+            win = Content.Load<Texture2D>("win");
+            arkanoid = Content.Load<Texture2D>("Arkanoid");
+            startText = Content.Load<Texture2D>("startText");
+            restartText = Content.Load<Texture2D>("restartText");
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -60,6 +72,24 @@ namespace ArkanoidFNA
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+
+            switch (currentMode)
+            {
+                case GameMode.Menu:
+                    DrawMenuScreen();
+                    spriteBatch.End();
+                    return;
+
+                case GameMode.GameOver:
+                    DrawGameOverScreen();
+                    spriteBatch.End();
+                    return;
+
+                case GameMode.Victory:
+                    DrawVictoryScreen();
+                    spriteBatch.End();
+                    return;
+            }
 
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
 
@@ -194,76 +224,76 @@ namespace ArkanoidFNA
             base.Update(gameTime);
         }
 
-        private void DrawMenuScreen(GameTime gameTime)
+        private void DrawMenuScreen()
         {
             var whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData(new[] { Color.White });
+            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight), Color.Black * 0.7f);
+
+            float scale = 0.6f;
+            float logoWidth = arkanoid.Width * scale;
+            float logoHeight = arkanoid.Height * scale;
+
+            float logoX = (GameConstants.GameWidth - logoWidth) / 2;
+            float logoY = 100;
 
             spriteBatch.Draw(
-                whitePixel,
-                new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight),
-                Color.Black * 0.7f
-                );
-
-            spriteBatch.DrawString(
-                gameFont,
-                "Arkanoid",
-                new Vector2(100, 100),
+                arkanoid,
+                new Rectangle((int)logoX, (int)logoY, (int)logoWidth, (int)logoHeight),
                 Color.White
-                );
+            );
+
+            float textX = (GameConstants.GameWidth - startText.Width) / 2;
+            float textY = 400;
+            spriteBatch.Draw(startText, new Vector2(textX, textY), Color.White);
         }
 
-        private void DrawGameOverScreen(GameTime gameTime)
+        private void DrawGameOverScreen()
         {
             var whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData(new[] { Color.White });
+            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight), Color.Black * 0.7f);
+
+            float scale = 0.5f;
+            float loseWidth = lose.Width * scale;
+            float loseHeight = lose.Height * scale;
+
+            float loseX = (GameConstants.GameWidth - loseWidth) / 2;
+            float loseY = 150;
 
             spriteBatch.Draw(
-                whitePixel,
-                new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight),
-                Color.Black * 0.7f
-            );
-
-            spriteBatch.DrawString(
-                gameFont,
-                "Game Over!",
-                new Vector2(200, 200),
-                Color.Red
-            );
-
-            spriteBatch.DrawString(
-                gameFont,
-                "Press R to Restart",
-                new Vector2(180, 280),
+                lose,
+                new Rectangle((int)loseX, (int)loseY, (int)loseWidth, (int)loseHeight),
                 Color.White
             );
+
+            float restartX = (GameConstants.GameWidth - restartText.Width) / 2;
+            float restartY = 350;
+            spriteBatch.Draw(restartText, new Vector2(restartX, restartY), Color.White);
         }
 
-        private void DrawVictoryScreen(GameTime gameTime)
+        private void DrawVictoryScreen()
         {
             var whitePixel = new Texture2D(GraphicsDevice, 1, 1);
             whitePixel.SetData(new[] { Color.White });
+            spriteBatch.Draw(whitePixel, new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight), Color.Black * 0.7f);
+
+            float scale = 0.5f;
+            float winWidth = win.Width * scale;
+            float winHeight = win.Height * scale;
+
+            float winX = (GameConstants.GameWidth - winWidth) / 2;
+            float winY = 150;
 
             spriteBatch.Draw(
-                whitePixel,
-                new Rectangle(0, 0, GameConstants.GameWidth, GameConstants.GameHeight),
-                Color.Black * 0.7f
-            );
-
-            spriteBatch.DrawString(
-                gameFont,
-                "Victory!",
-                new Vector2(220, 200),
-                Color.Green
-            );
-
-            spriteBatch.DrawString(
-                gameFont,
-                "Press R to Restart",
-                new Vector2(180, 280),
+                win,
+                new Rectangle((int)winX, (int)winY, (int)winWidth, (int)winHeight),
                 Color.White
             );
+
+            float restartX = (GameConstants.GameWidth - restartText.Width) / 2;
+            float restartY = 350;
+            spriteBatch.Draw(restartText, new Vector2(restartX, restartY), Color.White);
         }
     }
 }
-

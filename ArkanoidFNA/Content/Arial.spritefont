@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:FontDescription">
+    <FontName>Arial</FontName>
+    <Size>24</Size>
+    <Style>Regular</Style>
+    <UseKerning>true</UseKerning>
+  </Asset>
+</XnaContent>
